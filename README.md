@@ -1,23 +1,34 @@
-Preserving Temporal Dynamics in Synthetic Multivariate Time Series Using Generative Neural Networks and Monte Carlo Markov Chain
+# AEC-GAN
 
+This repository contains the code of **AEC-GAN: Adversarial Error Correction GANs for Auto-Regressive Long Time-Series Generation**.
 
-Overview
+Getting Started:
+1. Prepare the data:
+    - We have provide the data in the folder ``data``, containing the following six datasets:
+        - ``[etth1, etth2, ettm1, ettm2, us_births, ILI]``
+2. Install dependencies:
+    - This project is implemented with ``pytorch==1.8.1+cu102``
+3. For training
+    ```bash
+    python train.py -datasets $dataset -base_dir $save_path -p $p -q $q -use_cuda -algos 'AECGAN' -total_steps 10000 -batch_size 200 -noise_type min_adv -use_ec 2 
+    ```
+    - ``$dataset``: We have implemented ``AEC-GAN`` on six datasets: ``[etth1, etth2, ettm1, ettm2, us_births, ILI]``
+    - ``$save_path``: The path you save the model.
+    - ``$p``: The length of the past conditions.
+    - ``$q``: The length of the forward generations.
+4. For generation 
+    ```bash
+    python train.py -datasets $dataset -base_dir 'results/p168_q336' -p 168 -q 336 -use_cuda -algos 'AECGAN' -total_steps 10000 -batch_size 200 -noise_type min_adv -use_ec 2 -test 
+    ```
+    - ``$dataset``: We have implemented ``AEC-GAN`` on six datasets: ``[etth1, etth2, ettm1, ettm2, us_births, ILI]``
+    - ``$save_path``: The path you save the model.
+    - ``$p``: The length of the past conditions.
+    - ``$q``: The length of the forward generations.
+5. For downstream performance
+    - The generated data can be used as the alternative training set used for training forecasting models (e.g., SCINet, Informer and Autoformer).
+    - Folder `models` contains the code to train the downstream forecasting models.
+6. Easy usage
+    - For an easy usage, we also provide a bash file ``run_file.sh``, which contains the commands to train the models or generate time-series data.
 
-This project aims to generate multivariate time series data by leveraging two models:
-
-1. **Generative Adversarial Networks (GANs)** - Used to generate the time source.
-2. **Markov Chain Monte Carlo (MCMC)** - Utilized to further process the GAN-generated data and generate multivariate time series data.
-
-Getting Started
-
-1. **Generate the DataSource along with TimeStamp:**
-   - Ensure you have the necessary libraries installed (e.g., TensorFlow/PyTorch, NumPy, etc.).
-   - Run the `GAN_Generate_DataSource.ipynb` to generate the time source using the GAN model.
-   
-2. **Processing the DataSource from the GAN model and Sampling the DataSource the Second Time to Generate Time Series:**
-   - Once the time source is generated, use the `MCMC_Generated_TimeSeries.ipynb` to run the MCMC algorithm and generate the multivariate time series data.
-
-Troubleshooting
-
-If you encounter any issues with the code or have questions, feel free to contact me at **cilin2046@gmail.com**.
-
+Resources
+- The GANs' code is partially based on the https://github.com/SigCGANs/Conditional-Sig-Wasserstein-GANs
