@@ -4,15 +4,15 @@ This repository contains the code of **Preserving Temporal Dynamics in Time Seri
 
 Getting Started:
 1. Prepare the data:
-    - We have provide the data in the folder ``data``, containing the following six datasets:
-        - ``[etth1, etth2, ettm1, ettm2, Licor, ILI]``
+    - We have provide the data in the folder ``data``, containing the following seven datasets:
+        - ``[etth1, etth2, ettm1, ettm2, lorenz, Licor, ILI]``
 2. Install dependencies:
     - This project is implemented with ``pytorch==1.8.1+cu102``
 3. For training
     ```bash
     python train.py -datasets 'etth1'     -base_dir 'results/p16_q32' -p 16 -q 32 -use_cuda -algos 'AECGAN' -total_steps 20000 -batch_size 100 -noise_type min_adv -use_ec 2 -weight_index 0
     ```
-    - ``$dataset``: We have implemented ``AEC-GAN`` on six datasets: ``[etth1, etth2, ettm1, ettm2, Licor, ILI]``
+    - ``$dataset``: We have implemented ``AEC-GAN`` on seven datasets: ``[etth1, etth2, ettm1, ettm2, lorenz, Licor, ILI]``
     - ``$save_path``: The path you save the model.
     - ``$p``: The length of the past conditions.
     - ``$q``: The length of the forward generations.
@@ -34,4 +34,4 @@ Getting Started:
     - For an easy usage, we also provide a bash file ``run_file.sh``, which contains the commands to train the models or generate time-series data.
 
 Resources
-- The GANs' code is partially based on the [https://[github.com/SigCGANs/Conditional-Sig-Wasserstein-GANs](https://github.com/HBhswl/AEC-GAN)](https://github.com/HBhswl/AEC-GAN)
+- The GANs' code is partially based on the https://github.com/HBhswl/AEC-GAN.
