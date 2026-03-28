@@ -1,18 +1,18 @@
-# AEC-GAN
+# GAN-MCMC
 
-This repository contains the code of **AEC-GAN: Adversarial Error Correction GANs for Auto-Regressive Long Time-Series Generation**.
+This repository contains the code of **Preserving Temporal Dynamics in Time Series Generation**.
 
 Getting Started:
 1. Prepare the data:
     - We have provide the data in the folder ``data``, containing the following six datasets:
-        - ``[etth1, etth2, ettm1, ettm2, us_births, ILI]``
+        - ``[etth1, etth2, ettm1, ettm2, Licor, ILI]``
 2. Install dependencies:
     - This project is implemented with ``pytorch==1.8.1+cu102``
 3. For training
     ```bash
     python train.py -datasets $dataset -base_dir $save_path -p $p -q $q -use_cuda -algos 'AECGAN' -total_steps 10000 -batch_size 200 -noise_type min_adv -use_ec 2 
     ```
-    - ``$dataset``: We have implemented ``AEC-GAN`` on six datasets: ``[etth1, etth2, ettm1, ettm2, us_births, ILI]``
+    - ``$dataset``: We have implemented ``AEC-GAN`` on six datasets: ``[etth1, etth2, ettm1, ettm2, Licor, ILI]``
     - ``$save_path``: The path you save the model.
     - ``$p``: The length of the past conditions.
     - ``$q``: The length of the forward generations.
