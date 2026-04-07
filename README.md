@@ -1,6 +1,6 @@
 # GAN-MCMC
 
-This repository contains the code of **Preserving Temporal Dynamics in Time Series Generation**.
+This repository contains the code for the paper **Preserving Temporal Dynamics in Time Series Generation**.
 
 Getting Started:
 1. Prepare the data:
